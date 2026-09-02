@@ -1,28 +1,31 @@
 from os import system
 
-from caderno import Caderno
+from mesa import Mesa
 
 
 class Menu:
 
-    __caderno: Caderno
+    __mesa: Mesa
 
     def __init__(self) -> None:
-        self.__caderno = Caderno()
+        self.__mesa = Mesa()
 
     def __adicionar_nota(self) -> None:
         print("No que está pensando?")
         memo = input("> ")
         print("Informe as tags (separado por espaços):")
         tags = (input("> ")).split(" ")
-        self.__caderno.nova_nota(memo, tags)
+        caderno = self.__mesa.pegarCaderno()
+        caderno.nova_nota(memo, tags)
+        self.__mesa.guardarCaderno(caderno)
         system("clear")
 
     def __exibir_notas(self) -> None:
         print("== Notas ==")
-        if self.__caderno.quantidade_notas == 0:
+        caderno = self.__mesa.pegarCaderno()
+        if caderno.quantidade_notas == 0:
             print("Nehnuma nota adicionada.")
-        for linha in self.__caderno.formatar_notas():
+        for linha in caderno.formatar_notas():
             print(linha)
         input("... Pressione [ENTER] para continuar ...")
         system("clear")
@@ -30,7 +33,8 @@ class Menu:
     def __buscar_notas(self) -> None:
         print("Informe o termo de busca:")
         filtro = input("> ")
-        notas = self.__caderno.pesquisar(filtro)
+        caderno = self.__mesa.pegarCaderno()
+        notas = caderno.pesquisar(filtro)
         if len(notas) == 0:
             print("Nehnuma nota encontrada.")
         for nota in notas:

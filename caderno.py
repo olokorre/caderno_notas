@@ -5,8 +5,12 @@ class Caderno:
 
     __notas: list[Nota]
 
-    def __init__(self) -> None:
-        self.__notas = []
+    def __init__(self, notas: list[Nota] = []) -> None:
+        self.__notas = notas
+
+    @property
+    def notas(self) -> list[Nota]:
+        return self.__notas.copy()
 
     @property
     def quantidade_notas(self) -> int:

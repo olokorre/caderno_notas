@@ -8,9 +8,15 @@ class Nota:
     __tags: list[str]
     __data_criacao: datetime
 
-    def __init__(self, id: int, memo: str, tags: list[str] = []) -> None:
+    def __init__(
+        self,
+        id: int,
+        memo: str,
+        tags: list[str] = [],
+        data_criacao: datetime = datetime.now(),
+    ) -> None:
         self.__id = id
-        self.__data_criacao = datetime.now()
+        self.__data_criacao = data_criacao
         self.__memo = memo
         self.__tags = tags
 
@@ -40,7 +46,16 @@ class Nota:
         self.__tags = tags
 
     def formatar(self) -> str:
+        data = self.__data_criacao.strftime("%d/%m/%Y %H:%M:%S")
         return (
-            f"{self.__id}. \"{self.__memo}\" ({', '.join(self.__tags)})"
-            + f"Data: {self.__data_criacao.isoformat()}"
+            f"{self.__id}. \"{self.__memo}\" ({', '.join(self.__tags)}) "
+            + f"Escrita em: {data}"
         )
+
+    def gerar_dicionario(self) -> dict:
+        return {
+            "id": self.__id,
+            "memo": self.__memo,
+            "tags": self.__tags.copy(),
+            "data_criacao": self.__data_criacao.isoformat(),
+        }
