@@ -1,4 +1,4 @@
-from nota import Nota
+from source.nota import Nota
 
 
 class Caderno:

@@ -1,6 +1,6 @@
 from os import system
 
-from mesa import Mesa
+from source.mesa import Mesa
 
 
 class Menu:

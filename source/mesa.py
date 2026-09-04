@@ -1,10 +1,10 @@
 from datetime import datetime
 from json import dumps, loads
-
-from caderno import Caderno
 from os.path import exists
 
-from nota import Nota
+
+from source.caderno import Caderno
+from source.nota import Nota
 
 
 class Mesa:

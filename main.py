@@ -1,4 +1,4 @@
-from menu import Menu
+from source.menu import Menu
 
 menu = Menu()
 
