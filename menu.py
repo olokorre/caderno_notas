@@ -4,6 +4,9 @@ from mesa import Mesa
 
 
 class Menu:
+    """
+    Menu da aplicação
+    """
 
     __mesa: Mesa
 
@@ -11,6 +14,7 @@ class Menu:
         self.__mesa = Mesa()
 
     def __adicionar_nota(self) -> None:
+        """Adiciona notas ao caderno"""
         print("No que está pensando?")
         memo = input("> ")
         print("Informe as tags (separado por espaços):")
@@ -21,6 +25,7 @@ class Menu:
         system("clear")
 
     def __exibir_notas(self) -> None:
+        """Exibe todas as notas"""
         print("== Notas ==")
         caderno = self.__mesa.pegarCaderno()
         if caderno.quantidade_notas == 0:
@@ -31,6 +36,7 @@ class Menu:
         system("clear")
 
     def __buscar_notas(self) -> None:
+        """Busca a nota do caderno"""
         print("Informe o termo de busca:")
         filtro = input("> ")
         caderno = self.__mesa.pegarCaderno()
@@ -43,6 +49,7 @@ class Menu:
         system("clear")
 
     def __editar_nota(self) -> None:
+        """Busca e edita a nota do caderno"""
         print("Informe o id da nota:")
         id = int(input("> "))
         caderno = self.__mesa.pegarCaderno()
@@ -66,6 +73,7 @@ class Menu:
         system("clear")
 
     def __remover_nota(self) -> None:
+        """Busca e remove a nota do caderno"""
         print("Informe o id da nota:")
         id = int(input("> "))
         caderno = self.__mesa.pegarCaderno()
@@ -82,6 +90,7 @@ class Menu:
         system("clear")
 
     def main(self) -> None:
+        """Menu"""
         while True:
             print("== Menu Inicial ==")
             print(" 1. Adicionar Nota")

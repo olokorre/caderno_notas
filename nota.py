@@ -2,6 +2,7 @@ from datetime import datetime
 
 
 class Nota:
+    """Classe que representa uma nota"""
 
     __id: int
     __memo: str
@@ -37,15 +38,22 @@ class Nota:
         return self.__data_criacao
 
     def corresponde(self, filtro: str) -> bool:
+        """
+        Verifica se o memorando possui algo de semelhante com o termo informado
+        no filtro. Em caso positivo, retorna True
+        """
         return filtro.upper() in self.__memo.upper()
 
     def modificar_memo(self, memo: str) -> None:
+        """Modifica o memorando"""
         self.__memo = memo
 
     def modificar_tags(self, tags: list[str]) -> None:
+        """Modifica as tags"""
         self.__tags = tags
 
     def formatar(self) -> str:
+        """Renderiza a nota em formato de texto"""
         data = self.__data_criacao.strftime("%d/%m/%Y %H:%M:%S")
         return (
             f"{self.__id}. \"{self.__memo}\" ({', '.join(self.__tags)}) "
@@ -53,6 +61,7 @@ class Nota:
         )
 
     def gerar_dicionario(self) -> dict:
+        """Exporta a nota em formato de dicionário"""
         return {
             "id": self.__id,
             "memo": self.__memo,
