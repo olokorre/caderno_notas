@@ -17,7 +17,9 @@ class Caderno:
         return len(self.__notas)
 
     def __proxima_nota(self) -> int:
-        return len(self.__notas) + 1
+        if len(self.__notas) == 0:
+            return 1
+        return max(nota.id for nota in self.__notas) + 1
 
     def __buscar_nota_pelo_id(self, id: int) -> Nota:
         for nota in self.__notas:
@@ -45,6 +47,10 @@ class Caderno:
     def modificar_tags(self, id: int, tags: list[str]) -> None:
         nota = self.__buscar_nota_pelo_id(id)
         nota.modificar_tags(tags)
+
+    def remover_nota(self, id: int) -> None:
+        nota = self.__buscar_nota_pelo_id(id)
+        self.__notas.remove(nota)
 
     def formatar_notas(self) -> list[str]:
         notas = []
